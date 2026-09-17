@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{color-scheme:light dark}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Анкета преподавателя</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&display=swap">
+
+<style>
+/* ===== Compass College — токены брендбука =====
+   Палитра (брендбук, с. 9): Total Black #000000 · Ivory #E5E4DF
+   Pistachio #ACB948 · White #FFFFFF. Акцентный текст — производный #5C6600.
+   Фисташковый — цвет плашки, не цвет буквы.
+   Шрифты: TT Norms (в артефакте замещён Figtree) + Roboto Condensed для данных.
+   Форма: радиус 0, кроме фильтров-пилюль.                                   */
+:root{
+  --ink:#000000; --ink-2:#2B2C28; --muted:#5F605A;
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#E5E4DF; --sunk:#E5E4DF;
+  --accent:#ACB948; --accent-text:#5C6600; --on-accent:#000000;
+  --accent-soft:#EFF2DC;
+  --rule:rgba(0,0,0,.16); --rule-soft:rgba(0,0,0,.09);
+  --focus:#5C6600;
+  --radius:0px; --radius-pill:999px;
+  --font-base:"TT Norms","Figtree","Segoe UI",system-ui,sans-serif;
+  --font-data:"Roboto Condensed","Arial Narrow",Helvetica,Arial,sans-serif;
+  --shadow:none; --shadow-sm:none;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#F2F2EF; --ink-2:#D8D9D3; --muted:#9A9B95;
+    --bg:#0E0E0E; --surface:#141414; --surface-2:#1C1C1A; --sunk:#1C1C1A;
+    --accent:#ACB948; --accent-text:#ACB948; --on-accent:#000000;
+    --accent-soft:#222417;
+    --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.09);
+    --focus:#ACB948;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F2F2EF; --ink-2:#D8D9D3; --muted:#9A9B95;
+  --bg:#0E0E0E; --surface:#141414; --surface-2:#1C1C1A; --sunk:#1C1C1A;
+  --accent:#ACB948; --accent-text:#ACB948; --on-accent:#000000;
+  --accent-soft:#222417;
+  --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.09);
+  --focus:#ACB948;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-base);font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased}
+button,input,textarea,select{font:inherit;color:inherit}
+.page{max-width:1180px;margin:0 auto;padding:26px 20px 90px}
+
+/* ---------- шапка ---------- */
+.mast{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.mast b{font-family:var(--font-base);font-weight:600;font-size:15px;letter-spacing:-.01em}
+.mast span{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--font-base);font-weight:600;font-size:26px;margin:0 0 10px;letter-spacing:-.015em}
+.lead{color:var(--ink-2);margin:0 0 4px;max-width:66ch}
+.lead + .lead{margin-top:10px}
+
+/* ---------- выбор себя ---------- */
+.start{background:var(--surface);border:1px solid var(--rule-soft);border-radius: var(--radius);
+  padding:26px 28px;margin-top:22px;box-shadow:var(--shadow-sm)}
+.start h2{font-size:17px;margin:0 0 6px;font-weight:600}
+.start p{margin:0 0 18px;color:var(--muted);font-size:13.5px;max-width:60ch}
+select.who{width:100%;max-width:440px;padding:11px 13px;border:1px solid var(--rule);
+  border-radius: var(--radius);background:var(--surface-2);font-size:15px}
+select.who:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.steps{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:12px}
+.steps li{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--ink-2)}
+.steps b{flex:none;width:22px;height:22px;border-radius: var(--radius);background:var(--accent-soft);color: var(--accent-text);
+  display:grid;place-items:center;font-family:var(--font-data);font-size:11px;font-weight:600}
+.contact{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule-soft);
+  font-size:13px;color:var(--muted)}
+.contact a{color: var(--accent-text);font-weight:500}
+
+/* ---------- панель работы ---------- */
+.bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--rule-soft);border-radius: var(--radius);
+  padding:12px 16px;margin:20px 0 16px;box-shadow:var(--shadow-sm)}
+.bar .nm{font-weight:600}
+.bar .nm small{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+.tabs{display:flex;gap:5px;flex-wrap:wrap}
+.tab{border:1px solid var(--rule);background:var(--surface-2);border-radius: var(--radius);
+  padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--ink-2);display:inline-flex;align-items:center;gap:7px}
+.tab[aria-pressed="true"]{background:var(--accent);border-color: var(--accent-text);color:#fff}
+.tab i{font-style:normal;font-family:var(--font-data);font-size:10.5px;opacity:.75}
+.tab.ok i{color: var(--accent-text)}
+.tab[aria-pressed="true"].ok i{color:#B8E6CE}
+.bar .right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.pill{font-family:var(--font-data);font-size:12px;color:var(--muted);
+  background:var(--sunk);border-radius: var(--radius);padding:5px 12px}
+.btn{border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius: var(--radius);
+  padding:9px 18px;font-weight:500;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ghost{background:transparent;color: var(--accent-text);border-color:var(--rule)}
+.btn:focus-visible,.tab:focus-visible,.mini:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* ---------- доска ---------- */
+.board{display:grid;grid-template-columns:1fr 250px 1fr;gap:16px;align-items:start}
+.col{background:var(--surface);border:1px solid var(--rule-soft);border-radius: var(--radius);
+  padding:14px;min-height:240px}
+.col.over{border-color: var(--accent-text);background:var(--accent-soft)}
+.col h3{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 3px;font-weight:600}
+.col .hint{font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.4}
+.mine{background:var(--accent);color:#fff;border-radius: var(--radius);padding:18px 16px;text-align:center;
+  box-shadow:var(--shadow)}
+.mine span{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;display:block;margin-bottom:7px}
+.mine b{font-size:16px;font-weight:600;line-height:1.25;display:block}
+.mine em{font-style:normal;display:block;margin-top:9px;font-size:12px;opacity:.75}
+.arrows{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;
+  font-size:11px;color:var(--muted);text-align:center}
+
+/* ---------- карточки связей ---------- */
+.card{border:1px solid var(--rule);border-radius: var(--radius);padding:11px 12px;margin-bottom:9px;
+  background:var(--surface-2)}
+.card.y{border-color: var(--accent-text);background:var(--accent-soft)}
+.card.n{border-color:var(--rule);background:transparent;opacity:.55}
+.card.add{border-color:var(--muted);background:var(--surface-2)}
+.card .top{display:flex;gap:9px;align-items:flex-start}
+.card .nm{font-weight:500;font-size:13.5px;line-height:1.3;flex:1;min-width:0}
+.card .yr{font-family:var(--font-data);font-size:10px;color:var(--muted);flex:none;padding-top:2px}
+.card .f{font-size:12.5px;color:var(--ink-2);margin:8px 0 0;line-height:1.45}
+.card.n .f{text-decoration:line-through;text-decoration-color:var(--rule)}
+.card textarea{width:100%;margin-top:8px;border:1px solid var(--rule);border-radius: var(--radius);
+  padding:8px 10px;background:var(--surface);font-size:12.5px;resize:vertical;min-height:34px;
+  font-family:inherit;line-height:1.4}
+.card textarea:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+.acts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+.mini{border:1px solid var(--rule);background:var(--surface);border-radius: var(--radius);
+  padding:4px 11px;font-size:12px;cursor:pointer;color:var(--ink-2)}
+.mini:hover{border-color: var(--accent-text)}
+.mini.on-y{background:var(--accent);border-color: var(--accent-text);color:#fff}
+.mini.on-n{background:var(--surface);border-color:var(--ink);color:var(--ink)}
+.mini.del{margin-left:auto;color:var(--muted)}
+.empty{border:1px dashed var(--rule);border-radius: var(--radius);padding:20px 12px;text-align:center;
+  color:var(--muted);font-size:12.5px;line-height:1.45}
+
+/* ---------- пул ---------- */
+.pool{background:var(--surface);border:1px solid var(--rule-soft);border-radius: var(--radius);
+  padding:14px 16px;margin-top:16px}
+.pool .head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.pool h3{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+  margin:0;font-weight:600}
+.pool .head .hint{font-size:12px;color:var(--muted);margin:0}
+.filt{display:flex;gap:5px;margin-left:auto;flex-wrap:wrap}
+.filt button{border:1px solid var(--rule);background:var(--surface-2);border-radius: var(--radius);
+  padding:4px 11px;font-size:12px;cursor:pointer;color:var(--ink-2)}
+.filt button[aria-pressed="true"]{background:var(--accent);border-color: var(--accent-text);color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--rule);background:var(--surface-2);border-radius: var(--radius);
+  padding:8px 10px;font-size:12.5px;cursor:grab;display:flex;align-items:center;gap:8px;
+  max-width:280px}
+.chip:active{cursor:grabbing}
+.chip.drag{opacity:.4}
+.chip .cn{line-height:1.25}
+.chip .add{display:flex;gap:4px;flex:none}
+.chip .add button{border:1px solid var(--rule);background:var(--surface);border-radius: var(--radius);
+  width:24px;height:24px;font-size:13px;line-height:1;cursor:pointer;color:var(--muted);padding:0}
+.chip .add button:hover{border-color: var(--accent-text);color: var(--accent-text)}
+
+/* ---------- итог ---------- */
+.done{background:var(--surface);border:1px solid var(--accent);border-radius: var(--radius);
+  padding:24px 26px;margin-top:20px}
+.done h2{font-size:18px;margin:0 0 8px;font-weight:600}
+.done p{margin:0 0 16px;color:var(--ink-2);font-size:13.5px;max-width:64ch}
+.out{width:100%;min-height:260px;border:1px solid var(--rule);border-radius: var(--radius);
+  padding:14px;background:var(--surface-2);font-family:var(--font-data);
+  font-size:12px;line-height:1.55;resize:vertical}
+.done .row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.ok{color: var(--accent-text);font-size:13px;font-weight:500;margin-left:4px}
+.note{margin-top:16px}
+.note label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.note textarea{width:100%;min-height:70px;border:1px solid var(--rule);border-radius: var(--radius);
+  padding:10px 12px;background:var(--surface);font-size:13.5px;font-family:inherit;resize:vertical}
+
+.foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--rule-soft);
+  font-size:12px;color:var(--muted);line-height:1.6}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:900px){
+  .board{grid-template-columns:1fr}
+  .mine{order:-1}
+  .chip{max-width:100%}
+}
+
+/* ===== фирменный слой ===== */
+h1,.mast b{font-weight:800}
+.start,.bar,.col,.pool,.done,.card,.chip,.btn,.mini,.note textarea,.out,select.who,.card textarea{border-radius:var(--radius)}
+.tab,.filt button{border-radius:var(--radius-pill)}
+.tab[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tab[aria-pressed="true"].ok i{color:var(--accent);opacity:1}
+.filt button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.pill{border-radius:var(--radius-pill);background:var(--surface-2);font-family:var(--font-data)}
+.btn{background:var(--ink);border-color:var(--ink);color:var(--bg);font-weight:600}
+.btn:hover{filter:none;background:var(--accent-text);border-color:var(--accent-text);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--accent-text);border-color:var(--rule)}
+.btn.ghost:hover{background:var(--surface-2);color:var(--accent-text)}
+.steps b{border-radius:var(--radius);background:var(--ink);color:var(--bg);font-family:var(--font-data)}
+.mine{background:var(--accent);color:var(--on-accent);border-radius:var(--radius)}
+.mine span,.mine em{opacity:.8}
+.col.over{border-color:var(--accent);background:var(--accent-soft)}
+.card{background:var(--surface-2);border-color:var(--rule)}
+.card.y{border-color:var(--accent);background:var(--accent-soft)}
+.card.n{background:transparent;border-color:var(--rule);opacity:.5}
+.card.add{border:1.5px solid var(--accent-text);background:var(--surface-2)}
+.card .yr{font-family:var(--font-data)}
+.mini.on-y{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.mini.on-n{background:transparent;border-color:var(--ink);color:var(--ink)}
+.mini:hover{border-color:var(--accent-text)}
+.empty{border-radius:var(--radius);border-color:var(--rule)}
+.chip .add button{border-radius:var(--radius)}
+.chip .add button:hover{border-color:var(--accent-text);color:var(--accent-text)}
+.done{border:1.5px solid var(--accent)}
+.out{font-family:var(--font-data)}
+.ok{color:var(--accent-text)}
+.contact a{color:var(--accent-text)}
+</style>
+
+<div class="page">
+  <div class="mast"><b>Траектория креатора</b><span>Compass College</span></div>
+  <h1>Анкета преподавателя</h1>
+  <div id="root"></div>
+  <p class="foot" id="foot"></p>
+</div>
+
+<script>
+/* ==== данные подставляются сборкой ==== */
+const DISC = [{"id":"kyr","n":"Кыргызский язык","y":0,"b":0,"t":"А. Осмонова","cr":4},{"id":"eng","n":"Английский язык","y":0,"b":0,"t":"Дж. Райт","cr":6},{"id":"mat","n":"Математика","y":0,"b":0,"t":"А. Маркилов","cr":5},{"id":"phy","n":"Физика","y":0,"b":0,"t":"Э. Садыков","cr":4},{"id":"his","n":"История","y":0,"b":0,"t":"Н. Абдырахманова","cr":3},{"id":"geo","n":"География","y":0,"b":0,"t":"М. Турсунова","cr":3},{"id":"chm","n":"Химия","y":0,"b":0,"t":"С. Бакиров","cr":3},{"id":"draw","n":"Рисунок","y":0,"b":1,"t":"К. Джумабаев","cr":6},{"id":"digi","n":"Цифровой рисунок","y":0,"b":1,"t":"К. Джумабаев","cr":5},{"id":"hart","n":"История изобразительных искусств","y":0,"b":1,"t":"Н. Абдырахманова","cr":3},{"id":"think","n":"Мастерство мышления","y":0,"b":1,"t":"Р. Исаев","cr":4},{"id":"paint","n":"Живопись","y":0,"b":1,"t":"Г. Мамытова","cr":5},{"id":"hfash","n":"История ИЗО (моды и дизайна)","y":0,"b":1,"t":"Н. Абдырахманова","cr":3},{"id":"intro","n":"Введение в профессию","y":0,"b":1,"t":"Р. Исаев","cr":2},{"id":"anim","n":"Основа анимации","y":0,"b":1,"t":"Б. Асанов","cr":6},{"id":"photo0","n":"Введение в фотографию","y":0,"b":1,"t":"Т. Ким","cr":4},{"id":"speech","n":"Речь и пластика","y":0,"b":1,"t":"Э. Токтогулова","cr":3},{"id":"act","n":"Актерское мастерство","y":1,"b":1,"t":"Э. Токтогулова","cr":5},{"id":"vs1","n":"Визуальный сторителлинг: основы повествования","y":1,"b":1,"t":"Р. Исаев","cr":5},{"id":"photo","n":"Фотография","y":1,"b":1,"t":"Т. Ким","cr":5},{"id":"smm","n":"SMM","y":1,"b":1,"t":"А. Ниязова","cr":3},{"id":"cam","n":"Операторское искусство","y":1,"b":1,"t":"Т. Ким","cr":6},{"id":"sound","n":"Звукорежиссура","y":1,"b":1,"t":"У. Жапаров","cr":5},{"id":"edit1","n":"Режиссура монтажа I","y":1,"b":1,"t":"Б. Асанов","cr":3},{"id":"hcine1","n":"История кино и теория I","y":1,"b":1,"t":"Н. Абдырахманова","cr":2},{"id":"vs2","n":"Визуальный сторителлинг: режиссёрские методы","y":1,"b":1,"t":"Р. Исаев","cr":5},{"id":"crew","n":"Роли и технологии операторского департамента","y":1,"b":1,"t":"Т. Ким","cr":3},{"id":"edit2","n":"Режиссура монтажа II","y":2,"b":1,"t":"Б. Асанов","cr":3},{"id":"hcine2","n":"История кино и теория II","y":2,"b":1,"t":"Н. Абдырахманова","cr":2},{"id":"prod","n":"Продюсирование","y":2,"b":1,"t":"А. Ниязова","cr":5},{"id":"sdes","n":"Саунд-дизайн","y":2,"b":1,"t":"У. Жапаров","cr":5},{"id":"pwork","n":"Продакшн Воркшоп","y":2,"b":1,"t":"Б. Асанов","cr":8},{"id":"dist","n":"Дистрибуция","y":2,"b":1,"t":"А. Ниязова","cr":3},{"id":"vfx","n":"Постпродакшн Воркшоп (VFX)","y":2,"b":1,"t":"Э. Садыков","cr":8},{"id":"color","n":"Цветокоррекция и композитинг","y":2,"b":1,"t":"Г. Мамытова","cr":5},{"id":"dip","n":"Дипломная работа","y":3,"b":1,"t":"Руководитель по выбору","cr":12}];
+const LINKS = [{"a":"eng","b":"digi","ty":"sup","f":"В Цифровом рисунке требуется чтение англоязычного интерфейса редактора и терминология слоёв и кистей из Английского языка."},{"a":"his","b":"hart","ty":"sup","f":"В Истории изобразительных искусств требуется хронология эпох и умение соотнести произведение с периодом из Истории."},{"a":"chm","b":"paint","ty":"sup","f":"В Живописи требуется представление о составе пигментов, связующих и их совместимости из Химии."},{"a":"chm","b":"photo0","ty":"sup","f":"Во Введении в фотографию требуется понимание светочувствительности материалов — от плёночной эмульсии до сенсора — из Химии."},{"a":"phy","b":"anim","ty":"sup","f":"В Основе анимации требуется понимание инерции, ускорения и веса тела из Физики."},{"a":"mat","b":"anim","ty":"sup","f":"В Основе анимации требуется работа с числовыми интервалами и графиками скорости — тайминг и спейсинг — из Математики."},{"a":"phy","b":"photo0","ty":"sup","f":"Во Введении в фотографию требуется понимание фокусного расстояния, преломления и яркости света из Физики."},{"a":"mat","b":"photo0","ty":"sup","f":"Во Введении в фотографию требуется работа со степенным рядом диафрагм и дробными выдержками из Математики."},{"a":"kyr","b":"speech","ty":"sup","f":"В Речи и пластике требуется норма произношения, интонирование и дыхание во фразе из Кыргызского языка."},{"a":"kyr","b":"vs1","ty":"sup","f":"В Основах повествования требуется письменная связность и работа с текстом из Кыргызского языка."},{"a":"mat","b":"smm","ty":"sup","f":"В SMM требуется работа с процентами, долями и относительными показателями охвата из Математики."},{"a":"eng","b":"smm","ty":"sup","f":"В SMM требуется чтение интерфейсов и метрик площадок на английском из Английского языка."},{"a":"phy","b":"cam","ty":"sup","f":"В Операторском искусстве требуется оптика: фокусное расстояние, светосила и глубина резкости из Физики."},{"a":"mat","b":"cam","ty":"sup","f":"В Операторском искусстве требуется расчёт соотношений сторон, разрешения и частоты кадров из Математики."},{"a":"phy","b":"sound","ty":"sup","f":"В Звукорежиссуре требуется понимание частоты, амплитуды и распространения волны из Физики."},{"a":"mat","b":"sound","ty":"sup","f":"В Звукорежиссуре требуется логарифмическая шкала децибел и работа с уровнями из Математики."},{"a":"mat","b":"edit1","ty":"sup","f":"В Режиссуре монтажа I требуется перевод кадров, секунд и таймкода при разной частоте кадров из Математики."},{"a":"mat","b":"crew","ty":"sup","f":"В Ролях и технологиях требуется расчёт сметы аренды техники на смену — проценты и рассрочка — из Математики."},{"a":"mat","b":"prod","ty":"req","f":"В Продюсировании требуется расчёт сметы: проценты, сложный процент и оптимизация ограниченного бюджета из Математики."},{"a":"geo","b":"prod","ty":"sup","f":"В Продюсировании требуется оценка локаций, климата и логистики при построении календаря и сметы из Географии."},{"a":"eng","b":"dist","ty":"sup","f":"В Дистрибуции требуется чтение фестивальных регламентов и подача заявок на английском из Английского языка."},{"a":"geo","b":"dist","ty":"sup","f":"В Дистрибуции требуется представление о карте фестивалей и территориальных правах из Географии."},{"a":"mat","b":"vfx","ty":"sup","f":"В VFX требуется работа с координатами, векторами и допуском точности из Математики."},{"a":"phy","b":"vfx","ty":"sup","f":"В VFX требуется понимание гравитации, столкновений и скорости для симуляций из Физики."},{"a":"mat","b":"color","ty":"sup","f":"В Цветокоррекции требуется чтение гистограммы, кривых и числовых диапазонов из Математики."},{"a":"draw","b":"digi","ty":"req","f":"В Цифровом рисунке требуется конструктивное построение и передача объёма из Рисунка."},{"a":"draw","b":"paint","ty":"req","f":"В Живописи требуется постановка руки и тональное построение формы из Рисунка."},{"a":"draw","b":"anim","ty":"req","f":"В Основе анимации требуется умение построить фигуру в движении и удержать пропорции из Рисунка."},{"a":"draw","b":"vs2","ty":"sup","f":"В Режиссёрских методах требуется быстрая зарисовка раскадровки от руки из Рисунка."},{"a":"hart","b":"hfash","ty":"req","f":"В Истории моды и дизайна требуется периодизация стилей и язык анализа формы из Истории изобразительных искусств."},{"a":"hart","b":"hcine1","ty":"sup","f":"В Истории кино I требуется навык стилевого анализа изображения из Истории изобразительных искусств."},{"a":"hfash","b":"hcine1","ty":"sup","f":"В Истории кино I требуется чтение костюма и предметной среды эпохи из Истории моды и дизайна."},{"a":"think","b":"vs1","ty":"req","f":"В Основах повествования требуется умение порождать, отбирать и защищать замысел из Мастерства мышления."},{"a":"speech","b":"act","ty":"req","f":"В Актёрском мастерстве требуется поставленное дыхание, голос и владение телом из Речи и пластики."},{"a":"speech","b":"sound","ty":"sup","f":"В Звукорежиссуре требуется слышать дикцию и темпоритм речи при записи из Речи и пластики."},{"a":"photo0","b":"photo","ty":"req","f":"В Фотографии требуется уверенное владение экспопарой и камерой из Введения в фотографию."},{"a":"paint","b":"photo","ty":"sup","f":"В Фотографии требуется чувство тона и цветового строя кадра из Живописи."},{"a":"paint","b":"color","ty":"req","f":"В Цветокоррекции требуется владение тоном, колоритом и цветовыми отношениями из Живописи."},{"a":"digi","b":"vfx","ty":"req","f":"В VFX требуется работа со слоями, масками и разрешением в графическом редакторе из Цифрового рисунка."},{"a":"digi","b":"color","ty":"sup","f":"В композитинге требуется работа со слоями, масками и альфа-каналом из Цифрового рисунка."},{"a":"anim","b":"edit1","ty":"sup","f":"В Режиссуре монтажа I требуется чувство тайминга и спейсинга из Основы анимации."},{"a":"anim","b":"vfx","ty":"sup","f":"В VFX требуется понимание принципов движения и веса при симуляции и вставке объекта из Основы анимации."},{"a":"photo","b":"cam","ty":"req","f":"В Операторском искусстве требуется построение композиции кадра и работа со светом из Фотографии."},{"a":"cam","b":"crew","ty":"req","f":"В Ролях и технологиях требуется практическое знакомство с камерой, оптикой и светом из Операторского искусства."},{"a":"cam","b":"pwork","ty":"req","f":"В Продакшн Воркшопе требуется самостоятельная работа с камерой и световой схемой на смене из Операторского искусства."},{"a":"cam","b":"color","ty":"req","f":"В Цветокоррекции требуется понимать, как снят исходник: экспозиция, профиль, запас в тенях — из Операторского искусства."},{"a":"intro","b":"crew","ty":"sup","f":"В Ролях и технологиях требуется общая карта профессий и этапов производства из Введения в профессию."},{"a":"intro","b":"prod","ty":"sup","f":"В Продюсировании требуется знание ролей, департаментов и этапов производства из Введения в профессию."},{"a":"vs1","b":"vs2","ty":"req","f":"В Режиссёрских методах требуется владение структурой истории и аркой героя из Основ повествования."},{"a":"vs1","b":"edit1","ty":"req","f":"В Режиссуре монтажа I требуется понимание драматургии сцены и её событий из Основ повествования."},{"a":"act","b":"vs2","ty":"sup","f":"В Режиссёрских методах требуется понимание актёрской задачи и действия при построении мизансцены из Актёрского мастерства."},{"a":"act","b":"pwork","ty":"sup","f":"В Продакшн Воркшопе требуется умение поставить актёру задачу на площадке из Актёрского мастерства."},{"a":"hcine1","b":"vs2","ty":"sup","f":"В Режиссёрских методах требуется насмотренность и разбор чужих режиссёрских решений из Истории кино I."},{"a":"hcine1","b":"hcine2","ty":"req","f":"В Истории кино II требуется знание раннего и классического периодов и аппарат разбора из Истории кино I."},{"a":"edit1","b":"edit2","ty":"req","f":"В Режиссуре монтажа II требуется освоенная монтажная фраза и практика сборки из Режиссуры монтажа I."},{"a":"smm","b":"prod","ty":"sup","f":"В Продюсировании требуется понимание аудитории и каналов продвижения из SMM."},{"a":"smm","b":"dist","ty":"req","f":"В Дистрибуции требуется позиционирование проекта и работа с площадками из SMM."},{"a":"sound","b":"sdes","ty":"req","f":"В Саунд-дизайне требуется владение записью, чисткой и сведением из Звукорежиссуры."},{"a":"edit2","b":"vfx","ty":"req","f":"В VFX требуется собранный монтаж и понимание монтажной фразы из Режиссуры монтажа II."},{"a":"vs2","b":"pwork","ty":"req","f":"В Продакшн Воркшопе требуется готовая режиссёрская экспликация и раскадровка из Режиссёрских методов."},{"a":"crew","b":"pwork","ty":"req","f":"В Продакшн Воркшопе требуется распределение ролей и работа с техникой группы из Ролей и технологий операторского департамента."},{"a":"prod","b":"dist","ty":"sup","f":"В Дистрибуции требуется понимание прав, договоров и бюджета проекта из Продюсирования."},{"a":"prod","b":"dip","ty":"req","f":"В Дипломной работе требуется собственная смета, календарь и управление командой из Продюсирования."},{"a":"sdes","b":"dip","ty":"req","f":"В Дипломной работе требуется завершённая звуковая партитура фильма из Саунд-дизайна."},{"a":"pwork","b":"dip","ty":"req","f":"В Дипломной работе требуется опыт полного съёмочного периода в группе из Продакшн Воркшопа."},{"a":"dist","b":"dip","ty":"req","f":"В Дипломной работе требуется фестивальная стратегия и подготовка мастер-копии из Дистрибуции."},{"a":"vfx","b":"dip","ty":"req","f":"В Дипломной работе требуется финальная сборка и чистка кадра из Постпродакшн Воркшопа."},{"a":"color","b":"dip","ty":"req","f":"В Дипломной работе требуется грейд и единый look картины из Цветокоррекции."},{"a":"hcine2","b":"dip","ty":"sup","f":"В Дипломной работе требуется умение поместить свой замысел в контекст киноязыка и традиции из Истории кино II."}];
+const TEACH = [{"name":"А. Маркилов","ids":["mat"]},{"name":"А. Ниязова","ids":["smm","prod","dist"]},{"name":"А. Осмонова","ids":["kyr"]},{"name":"Б. Асанов","ids":["anim","edit1","edit2","pwork"]},{"name":"Г. Мамытова","ids":["paint","color"]},{"name":"Дж. Райт","ids":["eng"]},{"name":"К. Джумабаев","ids":["draw","digi"]},{"name":"М. Турсунова","ids":["geo"]},{"name":"Н. Абдырахманова","ids":["his","hart","hfash","hcine1","hcine2"]},{"name":"Р. Исаев","ids":["think","intro","vs1","vs2"]},{"name":"С. Бакиров","ids":["chm"]},{"name":"Т. Ким","ids":["photo0","photo","cam","crew"]},{"name":"У. Жапаров","ids":["sound","sdes"]},{"name":"Э. Садыков","ids":["phy","vfx"]},{"name":"Э. Токтогулова","ids":["speech","act"]}];
+
+const CONTACT_NAME = "Айдар Маркилов";
+const CONTACT_ROLE = "преподаватель математики, общеобразовательный департамент";
+const CONTACT_DAT  = "Айдару Маркилову";                                    // дательный падеж
+const CONTACT_ROLE_DAT = "преподавателю математики общеобразовательного департамента";
+const CONTACT_MAIL = "a.markilov@compasscollege.art";
+
+const YEAR = ["1 курс","2 курс","3 курс","Диплом"];
+const byId = Object.fromEntries(DISC.map(d => [d.id, d]));
+
+let me = null;      // индекс преподавателя
+let cur = null;     // текущая дисциплина
+let filt = "all";
+let st = {};        // st[discId] = {in:{id:{v,f}}, out:{id:{v,f}}, note:""}
+                    // v: "" — не отвечено, "y" — подтверждено, "n" — отклонено, "add" — добавлено
+
+const root = document.getElementById("root");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- состояние ---------- */
+
+function initTeacher(i) {
+  me = i; st = {};
+  TEACH[i].ids.forEach(did => {
+    const rec = { in: {}, out: {}, note: "" };
+    LINKS.filter(l => l.b === did).forEach(l => rec.in[l.a]  = { v: "", f: l.f });
+    LINKS.filter(l => l.a === did).forEach(l => rec.out[l.b] = { v: "", f: l.f });
+    st[did] = rec;
+  });
+  cur = TEACH[i].ids[0];
+  filt = "all";
+}
+
+const answered = did => {
+  const r = st[did], all = [...Object.values(r.in), ...Object.values(r.out)];
+  const prop = all.filter(x => x.v !== "add");
+  return { done: prop.filter(x => x.v).length, total: prop.length };
+};
+const allDone = () => TEACH[me].ids.every(d => { const a = answered(d); return a.done === a.total; });
+
+/* ---------- отрисовка ---------- */
+
+function render() {
+  if (me === null) { renderStart(); return; }
+  const t = TEACH[me];
+
+  const tabs = t.ids.length > 1 ? `<div class="tabs">${t.ids.map(did => {
+    const a = answered(did), ok = a.done === a.total;
+    return `<button class="tab${ok ? " ok" : ""}" data-disc="${did}" aria-pressed="${did === cur}">
+      ${esc(byId[did].n)}<i>${a.done}/${a.total}</i></button>`;
+  }).join("")}</div>` : "";
+
+  const a = answered(cur);
+  const d = byId[cur];
+
+  root.innerHTML = `
+    <div class="bar">
+      <div class="nm">${esc(t.name)}<small>${t.ids.length > 1 ? t.ids.length + " дисциплины в программе" : esc(d.n)}</small></div>
+      ${tabs}
+      <div class="right">
+        <span class="pill">${a.done}/${a.total} разобрано</span>
+        <button class="btn" id="finish" ${allDone() ? "" : "disabled"}>Готово</button>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="col" data-drop="in">
+        <h3>Опирается на</h3>
+        <p class="hint">Что креатор должен уметь <b>на входе</b> в «${esc(d.n)}». Перетащите сюда дисциплину или нажмите «←» в списке внизу.</p>
+        <div id="colIn">${renderCol("in")}</div>
+      </div>
+
+      <div>
+        <div class="mine">
+          <span>Ваша дисциплина</span>
+          <b>${esc(d.n)}</b>
+          <em>${YEAR[d.y]} · ${d.cr} кредита</em>
+        </div>
+        <div class="arrows"><span>← опирается на</span><span>ведёт к →</span></div>
+      </div>
+
+      <div class="col" data-drop="out">
+        <h3>Ведёт к</h3>
+        <p class="hint">Где креатору <b>пригодится</b> то, что он взял у вас. Перетащите сюда дисциплину или нажмите «→» в списке внизу.</p>
+        <div id="colOut">${renderCol("out")}</div>
+      </div>
+    </div>
+
+    <div class="pool">
+      <div class="head">
+        <h3>Все дисциплины программы</h3>
+        <p class="hint">Перетащите в левое или правое поле</p>
+        <div class="filt">
+          ${[["all","Все"],["0","1 курс"],["1","2 курс"],["2","3 курс"],["3","Диплом"]]
+            .map(([k, l]) => `<button data-filt="${k}" aria-pressed="${filt === k}">${l}</button>`).join("")}
+        </div>
+      </div>
+      <div class="chips" id="pool">${renderPool()}</div>
+    </div>
+
+    <div class="note">
+      <label for="note">Что ещё важно знать о вашей дисциплине? Например: какие пробелы вы регулярно видите у первокурсников, сколько времени тратите на повторение чужого материала.</label>
+      <textarea id="note" placeholder="Необязательно">${esc(st[cur].note)}</textarea>
+    </div>
+  `;
+  wire();
+}
+
+function renderCol(side) {
+  const rec = st[cur][side];
+  const ids = Object.keys(rec);
+  if (!ids.length) return `<div class="empty">Пока пусто.<br>Перетащите дисциплину из списка внизу.</div>`;
+  ids.sort((x, y) => byId[x].n.localeCompare(byId[y].n, "ru"));
+  return ids.map(id => {
+    const it = rec[id], o = byId[id];
+    const cls = it.v === "y" ? " y" : it.v === "n" ? " n" : it.v === "add" ? " add" : "";
+    if (it.v === "add") {
+      const ph = side === "in"
+        ? "Что именно требуется из этой дисциплины?"
+        : "Что из вашей дисциплины там требуется?";
+      return `<div class="card add">
+        <div class="top"><span class="nm">${esc(o.n)}</span><span class="yr">${YEAR[o.y]}</span></div>
+        <textarea data-f="${side}|${id}" placeholder="${ph}">${esc(it.f)}</textarea>
+        <div class="acts"><button class="mini del" data-del="${side}|${id}">Убрать</button></div>
+      </div>`;
+    }
+    return `<div class="card${cls}">
+      <div class="top"><span class="nm">${esc(o.n)}</span><span class="yr">${YEAR[o.y]}</span></div>
+      <p class="f">${esc(it.f)}</p>
+      ${it.v === "y" ? `<textarea data-f="${side}|${id}" placeholder="Поправьте формулировку, если она неточна">${esc(it.f)}</textarea>` : ""}
+      <div class="acts">
+        <button class="mini${it.v === "y" ? " on-y" : ""}" data-v="${side}|${id}|y">Верно</button>
+        <button class="mini${it.v === "n" ? " on-n" : ""}" data-v="${side}|${id}|n">Связи нет</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function renderPool() {
+  const used = new Set([cur, ...Object.keys(st[cur].in), ...Object.keys(st[cur].out)]);
+  const list = DISC.filter(d => !used.has(d.id) && (filt === "all" || String(d.y) === filt));
+  if (!list.length) return `<div class="empty" style="width:100%">Здесь пусто — все дисциплины уже разложены.</div>`;
+  return list.map(d => `<div class="chip" draggable="true" data-id="${d.id}">
+      <span class="cn">${esc(d.n)}</span>
+      <span class="add">
+        <button data-put="in|${d.id}" title="Добавить в «Опирается на»">←</button>
+        <button data-put="out|${d.id}" title="Добавить в «Ведёт к»">→</button>
+      </span>
+    </div>`).join("");
+}
+
+function renderStart() {
+  root.innerHTML = `
+    <p class="lead">Мы собираем карту связей между дисциплинами программы «Визуальные медиа: Анимация». Цель — чтобы креатор видел, зачем нужна каждая дисциплина и к чему она ведёт.</p>
+    <p class="lead">От вас нужны ответы только про <b>вашу</b> дисциплину. Чужие программы знать не требуется. Занимает 15–20 минут.</p>
+    <div class="start">
+      <h2>Найдите себя в списке</h2>
+      <p>Дальше появятся связи, которые мы предположили за вас. Их нужно подтвердить, поправить или отклонить.</p>
+      <select class="who" id="who">
+        <option value="">— выберите преподавателя —</option>
+        ${TEACH.map((t, i) => `<option value="${i}">${esc(t.name)} — ${esc(t.ids.map(id => byId[id].n).join(", "))}</option>`).join("")}
+      </select>
+      <ul class="steps">
+        <li><b>1</b><span>Слева — дисциплины, на которые ваша опирается. Справа — те, что опираются на вашу.</span></li>
+        <li><b>2</b><span>Каждую предложенную связь пометьте: «Верно» или «Связи нет». Формулировку можно поправить.</span></li>
+        <li><b>3</b><span>Чего не хватает — перетащите из списка внизу и опишите одной фразой.</span></li>
+        <li><b>4</b><span>Нажмите «Готово» и отправьте получившийся текст ответным письмом.</span></li>
+      </ul>
+      <p class="contact">Вопросы — к ${CONTACT_DAT}, ${CONTACT_ROLE_DAT}: лично или на <a href="mailto:${CONTACT_MAIL}">${CONTACT_MAIL}</a>.</p>
+    </div>
+  `;
+  document.getElementById("who").addEventListener("change", e => {
+    if (e.target.value === "") return;
+    initTeacher(+e.target.value);
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+/* ---------- сборка ответа ---------- */
+
+function buildText() {
+  const t = TEACH[me];
+  const L = [];
+  L.push("АНКЕТА СВЯЗЕЙ МЕЖДУ ДИСЦИПЛИНАМИ");
+  L.push("Преподаватель: " + t.name);
+  L.push("Программа: Визуальные медиа — Анимация");
+  L.push("");
+
+  t.ids.forEach(did => {
+    const rec = st[did];
+    L.push("=".repeat(58));
+    L.push("ДИСЦИПЛИНА: " + byId[did].n.toUpperCase());
+    L.push("");
+    [["in", "ОПИРАЕТСЯ НА — что нужно креатору на входе"],
+     ["out", "ВЕДЁТ К — где это пригодится дальше"]].forEach(([side, title]) => {
+      L.push(title);
+      const rows = Object.entries(rec[side]);
+      if (!rows.length) { L.push("  (ничего не указано)"); L.push(""); return; }
+      const mark = { y: "[ВЕРНО]     ", n: "[СВЯЗИ НЕТ] ", add: "[ДОБАВЛЕНО] ", "": "[БЕЗ ОТВЕТА]" };
+      rows.sort((a, b) => byId[a[0]].n.localeCompare(byId[b[0]].n, "ru")).forEach(([id, it]) => {
+        L.push("  " + mark[it.v] + " " + byId[id].n);
+        if (it.v !== "n" && it.f.trim()) L.push("               " + it.f.trim());
+      });
+      L.push("");
+    });
+    if (rec.note.trim()) { L.push("КОММЕНТАРИЙ ПРЕПОДАВАТЕЛЯ"); L.push("  " + rec.note.trim()); L.push(""); }
+  });
+
+  const data = { v: 1, teacher: t.name, discs: {} };
+  t.ids.forEach(did => {
+    data.discs[did] = {
+      in: Object.fromEntries(Object.entries(st[did].in).map(([k, x]) => [k, [x.v, x.f]])),
+      out: Object.fromEntries(Object.entries(st[did].out).map(([k, x]) => [k, [x.v, x.f]])),
+      note: st[did].note
+    };
+  });
+  L.push("--- служебная строка, не удаляйте ---");
+  L.push("##ANKETA## " + JSON.stringify(data) + " ##END##");
+  return L.join("\n");
+}
+
+function renderDone() {
+  const text = buildText();
+  const subj = "Анкета связей — " + TEACH[me].name;
+  root.innerHTML = `
+    <div class="done">
+      <h2>Спасибо. Осталось отправить</h2>
+      <p>Скопируйте текст ниже и вставьте его в ответное письмо ${CONTACT_DAT} на адрес <b>${CONTACT_MAIL}</b>. Ничего редактировать не нужно — служебную строку в конце оставьте как есть.</p>
+      <div class="row">
+        <button class="btn" id="copy">Скопировать ответ</button>
+        <a class="btn ghost" id="mail" href="#">Открыть почтовую программу</a>
+        <button class="btn ghost" id="back">Вернуться и поправить</button>
+        <span class="ok" id="okmsg"></span>
+      </div>
+      <textarea class="out" id="out" readonly>${esc(text)}</textarea>
+    </div>
+  `;
+  const mail = document.getElementById("mail");
+  mail.href = "mailto:" + CONTACT_MAIL + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(text);
+  document.getElementById("copy").addEventListener("click", async () => {
+    const ta = document.getElementById("out");
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) { ta.focus(); ta.select(); document.execCommand && document.execCommand("copy"); }
+    document.getElementById("okmsg").textContent = "Скопировано";
+    setTimeout(() => { const m = document.getElementById("okmsg"); if (m) m.textContent = ""; }, 2500);
+  });
+  document.getElementById("back").addEventListener("click", () => { render(); });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ---------- события ---------- */
+
+function put(side, id) {
+  const other = side === "in" ? "out" : "in";
+  delete st[cur][other][id];
+  if (!st[cur][side][id]) st[cur][side][id] = { v: "add", f: "" };
+  render();
+}
+
+function wire() {
+  root.querySelectorAll("[data-disc]").forEach(b =>
+    b.addEventListener("click", () => { cur = b.dataset.disc; filt = "all"; render(); }));
+
+  root.querySelectorAll("[data-filt]").forEach(b =>
+    b.addEventListener("click", () => { filt = b.dataset.filt; render(); }));
+
+  root.querySelectorAll("[data-v]").forEach(b => b.addEventListener("click", () => {
+    const [side, id, v] = b.dataset.v.split("|");
+    const it = st[cur][side][id];
+    it.v = it.v === v ? "" : v;
+    render();
+  }));
+
+  root.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
+    const [side, id] = b.dataset.del.split("|");
+    delete st[cur][side][id];
+    render();
+  }));
+
+  root.querySelectorAll("[data-put]").forEach(b => b.addEventListener("click", () => {
+    const [side, id] = b.dataset.put.split("|");
+    put(side, id);
+  }));
+
+  root.querySelectorAll("[data-f]").forEach(ta => ta.addEventListener("input", () => {
+    const [side, id] = ta.dataset.f.split("|");
+    st[cur][side][id].f = ta.value;
+  }));
+
+  const note = document.getElementById("note");
+  if (note) note.addEventListener("input", () => { st[cur].note = note.value; });
+
+  const fin = document.getElementById("finish");
+  if (fin) fin.addEventListener("click", () => { if (allDone()) renderDone(); });
+
+  // перетаскивание
+  root.querySelectorAll(".chip[draggable]").forEach(ch => {
+    ch.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", ch.dataset.id);
+      e.dataTransfer.effectAllowed = "move";
+      ch.classList.add("drag");
+    });
+    ch.addEventListener("dragend", () => ch.classList.remove("drag"));
+  });
+  root.querySelectorAll("[data-drop]").forEach(col => {
+    col.addEventListener("dragover", e => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; col.classList.add("over"); });
+    col.addEventListener("dragleave", () => col.classList.remove("over"));
+    col.addEventListener("drop", e => {
+      e.preventDefault(); col.classList.remove("over");
+      const id = e.dataTransfer.getData("text/plain");
+      if (id && byId[id] && id !== cur) put(col.dataset.drop, id);
+    });
+  });
+}
+
+document.getElementById("foot").innerHTML =
+  "Связи, которые вы видите предзаполненными, — рабочая гипотеза, составленная координатором проекта по учебному плану. " +
+  "Она намеренно содержит лишнее: отклонить связь так же полезно, как подтвердить. " +
+  "Анкета ничего никуда не отправляет сама — ответ уходит только вашим письмом.";
+
+render();
+</script>
+
+</body>
+</html>
